@@ -4,7 +4,7 @@ import axios from "axios";
 export const SuL = (props) => {
   //get the data, pinpoint the fullform link and re-direct to it.
 
-  const server = `http://localhost:6969/`;
+  const server = `https://short-ur-link.herokuapp.com/`;
 
   useEffect(async () => {
     let data = await axios.get(`${server}refer/${props.match.params.id}`);

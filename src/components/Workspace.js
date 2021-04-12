@@ -36,7 +36,7 @@ export const Workspace = (props) => {
 
   return (
     <div>
-      <h2>workSpace</h2>
+      <h2>WorkSpace</h2>
       <h3>Welcome Back {dataToDisplay.name}</h3>
       <form onSubmit={handleSubmit(addLink)}>
         <input

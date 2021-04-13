@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
 export const Workspace = (props) => {
   const { control, handleSubmit } = useForm();
 
-  const server = `http://localhost:6969/`;
+  const serverLocal = `http://localhost:6969/`;
   const domain = `http://localhost:3000/`;
-  const serverWeb = `https://short-ur-link.herokuapp.com/`;
+  const server = `https://short-ur-link.herokuapp.com/`;
 
   const addLink = async (data) => {
     await axios.put(`${server}userList/${props.match.params.id}`, data);

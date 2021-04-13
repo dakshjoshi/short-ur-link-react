@@ -11,7 +11,7 @@ export const Login = () => {
   const newUserAdder = async (data) => {
     console.log(data);
 
-    let sentData = await axios.post(`${server}userLogin`, data);
+    let sentData = await axios.put(`${server}userLogin`, data);
 
     //After clicking on register button I should be re-directed to the /userList/:id
   };

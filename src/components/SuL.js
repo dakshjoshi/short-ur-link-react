@@ -5,6 +5,7 @@ export const SuL = (props) => {
   //get the data, pinpoint the fullform link and re-direct to it.
 
   const server = `https://short-ur-link.herokuapp.com/`;
+  const serverLocal = `http://localhost:6969/`;
 
   useEffect(async () => {
     let data = await axios.get(`${server}refer/${props.match.params.id}`);
@@ -19,10 +20,12 @@ export const SuL = (props) => {
 
   return (
     <div>
-      Redirecting Page
-      {
-        //Add a loading icon
-      }
+      {/* Redirecting Page */}
+      <div className="d-flex  m-5 justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
   );
 };

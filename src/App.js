@@ -6,19 +6,26 @@ import { Register } from "./components/Register";
 import { Workspace } from "./components/Workspace";
 import { SuL } from "./components/SuL";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FormDefault } from "./components/Context";
+import { AdminWorkSpace } from "./components/AdminWorkSpace";
+import { ResetBox } from "./components/ResetBox";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={Register}></Route>
-          <Route path="/workSpace/:id" component={Workspace}></Route>
-          <Route path="/SuL/:id" component={SuL}></Route>
-        </Switch>
-      </Router>
+      <FormDefault>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/workSpace/:id" component={Workspace}></Route>
+            <Route path="/SuL/:id" component={SuL}></Route>
+            <Route path="/admin" component={AdminWorkSpace}></Route>
+            <Route path="/reset/:id" component={ResetBox}></Route>
+          </Switch>
+        </Router>
+      </FormDefault>
     </div>
   );
 }

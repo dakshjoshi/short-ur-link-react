@@ -1,25 +1,98 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { TextField, Container, Button } from "@material-ui/core";
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import {
+  TextField,
+  Container,
+  Button,
+  AppBar,
+  IconButton,
+  Toolbar,
+  Collapse,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { Controller, useForm } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(2),
-      width: "75",
-    },
-    input: {},
+    minHeight: "100vh",
+    backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/bg3.jpg"})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  },
+  navbar: {
+    backgroundColor: "rgba(0,0,0)",
+    fontFamily: "Orbitron",
+  },
+  header: {
+    //background: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontFamily: "Orbitron",
+  },
+  wrapper: {
+    width: "90%",
+    margin: "0 auto",
+    //background: "none",
+  },
+  sul: {
+    flexGrow: 1,
+  },
+  name: {
+    borderBottom: 1,
+  },
+  form: {
+    alignItems: "center",
+  },
+  iconForSearch: {
+    fontSize: "4rem",
+    color: "#ffffff",
+  },
+  input: {
+    width: "80vh",
+    color: "#ffffff",
+    background: "none",
+    border: "none",
+    padding: "1rem",
+    fontSize: "1rem",
+    fontFamily: "Orbitron",
+  },
+  addLink: {
+    display: "flex",
+  },
+  forMargin: {
+    marginLeft: "23%",
+    marginTop: "5rem",
+    marginBottom: "2rem",
   },
 }));
 
 export const Workspace = (props) => {
-  const { control, handleSubmit } = useForm();
+  console.log(props);
+  const classes = useStyles();
+  const { control, register, handleSubmit } = useForm();
 
-  const serverLocal = `http://localhost:6969/`;
-  const domain = `http://localhost:3000/`;
-  const server = `https://short-ur-link.herokuapp.com/`;
+  const server = `http://localhost:6969/`;
+  const webDomain = `http://localhost:3000/`;
+
+  const serverOnline = `https://short-ur-link.herokuapp.com/`;
+  const domain = `https://elated-yalow-069089.netlify.app/`;
+
+  const token = localStorage.getItem("token");
+  console.log(token);
+  useEffect(async () => {
+    let userData = await axios.get(
+      `${server}userList/${props.match.params.id}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    console.log(`userDATA --> `, userData.data);
+
+    setDataToDisplay(userData.data.user);
+  }, []);
 
   const addLink = async (data) => {
     await axios.put(`${server}userList/${props.match.params.id}`, data);
@@ -32,14 +105,12 @@ export const Workspace = (props) => {
     Links: [{ fullform: "", shortform: "" }],
   });
 
-  console.log(dataToDisplay);
+  const dataData = {
+    name: "",
+    Links: [{ fullform: "", shortform: "" }],
+  };
 
-  useEffect(async () => {
-    let userData = await axios.get(
-      `${server}userList/${props.match.params.id}`
-    );
-    setDataToDisplay(userData.data.user);
-  }, []);
+  console.log(dataToDisplay);
 
   const deleteLink = async (link) => {
     await axios.put(`${server}workSpace/${props.match.params.id}`, link);
@@ -47,30 +118,39 @@ export const Workspace = (props) => {
   };
 
   return (
-    <div>
-      <h2>WorkSpace</h2>
-      <h3>Welcome Back {dataToDisplay.name}</h3>
+    <div className={classes.root}>
+      <AppBar className={classes.navbar} elevation={0}>
+        <Toolbar className={classes.wrapper}>
+          <h2 className={classes.sul}>SHORT-UR-LINK</h2>
+          <h3>
+            Welcome Back,
+            {dataToDisplay.name}
+          </h3>
+        </Toolbar>
+      </AppBar>
+
       <form
+        className={classes.form}
         onSubmit={handleSubmit(addLink)}
         className="m-5 justify-text-centre"
       >
-        <Container>
-          <Controller
-            control={control}
-            name="linkToAdd"
-            type="text"
-            render={({ field }) => (
-              <TextField
-                label="Shorten Link"
-                style={{ width: 600 }}
-                {...field}
-              />
-            )}
-          />
+        <Container className={classes.addLink}>
+          <div className={classes.forMargin}>
+            <input
+              type="text"
+              className={classes.input}
+              id="addBar"
+              placeholder="Please add  https://"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+              {...register("linkToAdd")}
+            />
 
-          <input type="submit" className="btn btn-dark rounded-0 m-2" />
+            <input type="submit" className="btn btn-light rounded-0 m-2" />
+          </div>
         </Container>
       </form>
+
       <table className="table table-dark">
         <thead>
           <tr>
@@ -87,12 +167,12 @@ export const Workspace = (props) => {
             ).map((link, i) => {
               return (
                 <tr key={i}>
-                  <td>{i}</td>
+                  <td>{i + 1}</td>
                   <td>{link.fullform}</td>
-                  <td>{`${domain}SuL/${link.shortform}`}</td>
+                  <td>{`${webDomain}SuL/${link.shortform}`}</td>
                   <td>
                     <button
-                      className="btn btn-light"
+                      className="btn text-light rounded-0"
                       onClick={() =>
                         deleteLink({
                           linkToDelete: link.fullform,

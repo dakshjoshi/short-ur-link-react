@@ -1,11 +1,30 @@
 import React from "react";
-import { Nav, NavItem, Navbar, NavbarBrand, Container } from "reactstrap";
+//import { Nav, NavItem, Navbar, NavbarBrand, Container } from "reactstrap";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core";
+import Header from "./components/Heading";
+import { LoginRegister } from "./components/LoginRegister";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: "100vh",
+  },
+}));
 
 export const Home = () => {
+  const classes = useStyles();
   return (
-    <div>
-      <Navbar className="bg-dark">
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header />
+      <LoginRegister />
+    </div>
+  );
+};
+
+{
+  /* <Navbar className="bg-dark">
         <Container>
           <NavbarBrand href="/" className="text-light">
             SHORT UR LINK
@@ -23,7 +42,5 @@ export const Home = () => {
             </NavItem>
           </Nav>
         </Container>
-      </Navbar>
-    </div>
-  );
-};
+      </Navbar> */
+}

@@ -43,13 +43,13 @@ export const Login = () => {
     //OLD -->
     //let sentData = await axios.post(`${server}userLogin/${data.user_id}`, data);
 
-    let sentData = await axios.post(`${server}userLogin`, data);
+    let sentData = await axios.post(`${serverLocal}userLogin`, data);
     console.log(sentData);
 
     //After clicking on register button I should be re-directed to the /userList/:id
     localStorage.setItem("token", sentData.data.token);
     // TO DO -->
-    window.location.replace(`${webDomain}${sentData.data._id}`);
+    window.location.replace(`${domain}${sentData.data._id}`);
   };
 
   return (

@@ -52,7 +52,7 @@ export const Reset = ({ variable }) => {
     console.log(variable);
     data.variable = variable;
 
-    let sentData = await axios.put(`${server}reset`, data);
+    let sentData = await axios.put(`${serverLocal}reset`, data);
     console.log(sentData);
 
     //After clicking on register button I should be re-directed to the login page
@@ -60,7 +60,7 @@ export const Reset = ({ variable }) => {
     if ((sentData.data.message = `PASSWORD UPDATED! CONGRATULATIONS`)) {
       setConfetti(true);
       setTimeout(() => {
-        window.location.replace(`${webDomain}`);
+        window.location.replace(`${domain}`);
       }, 3000);
     }
     setMessage(sentData.data.message);

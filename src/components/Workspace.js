@@ -82,7 +82,7 @@ export const Workspace = (props) => {
   console.log(token);
   useEffect(async () => {
     let userData = await axios.get(
-      `${server}userList/${props.match.params.id}`,
+      `${serverOnline}userList/${props.match.params.id}`,
       {
         headers: {
           Authorization: token,
@@ -95,7 +95,7 @@ export const Workspace = (props) => {
   }, []);
 
   const addLink = async (data) => {
-    await axios.put(`${server}userList/${props.match.params.id}`, data);
+    await axios.put(`${serverOnline}userList/${props.match.params.id}`, data);
     console.log(data);
     window.location.reload(true);
   };
@@ -113,7 +113,7 @@ export const Workspace = (props) => {
   console.log(dataToDisplay);
 
   const deleteLink = async (link) => {
-    await axios.put(`${server}workSpace/${props.match.params.id}`, link);
+    await axios.put(`${serverOnline}workSpace/${props.match.params.id}`, link);
     window.location.reload(true);
   };
 
@@ -169,7 +169,7 @@ export const Workspace = (props) => {
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{link.fullform}</td>
-                  <td>{`${webDomain}SuL/${link.shortform}`}</td>
+                  <td>{`${domain}SuL/${link.shortform}`}</td>
                   <td>
                     <button
                       className="btn text-light rounded-0"

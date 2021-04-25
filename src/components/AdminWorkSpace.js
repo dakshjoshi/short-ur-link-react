@@ -81,7 +81,7 @@ export const AdminWorkSpace = (props) => {
   const token = localStorage.getItem("token");
   console.log(token);
   useEffect(async () => {
-    let userData = await axios.get(`${server}userList/`, {
+    let userData = await axios.get(`${serverOnline}userList/`, {
       headers: {
         Authorization: token,
       },

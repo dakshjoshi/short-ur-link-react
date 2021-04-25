@@ -43,7 +43,7 @@ export const Forgot = () => {
   const newPassAdder = async (data) => {
     console.log(data);
 
-    let sentData = await axios.post(`${server}forgot`, data);
+    let sentData = await axios.post(`${serverLocal}forgot`, data);
     console.log(sentData);
 
     //After clicking on register button I should be re-directed to the /userList/:id

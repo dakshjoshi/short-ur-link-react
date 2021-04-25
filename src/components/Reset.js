@@ -44,7 +44,7 @@ export const Reset = ({ variable }) => {
 
   const server = `http://localhost:6969/`;
   const serverLocal = `https://short-ur-link.herokuapp.com/`;
-  const domain = `https://elated-yalow-069089.netlify.app/workSpace/`;
+  const domain = `https://elated-yalow-069089.netlify.app/`;
   const webDomain = `http://localhost:3000/`;
 
   const newPassAdder = async (data) => {

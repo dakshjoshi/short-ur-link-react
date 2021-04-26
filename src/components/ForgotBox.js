@@ -10,13 +10,17 @@ import DoneIcon from "@material-ui/icons/Done";
 
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // minWidth: 275,
     minWidth: 700,
     minHeight: 400,
     background: "rgb(255,255,255,.6)",
     fontFamily: "Orbitron",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 200,
+      minHeight: 200,
+    },
   },
   bullet: {
     display: "inline-block",
@@ -43,7 +47,7 @@ const useStyles = makeStyles({
   tick: {
     fontSize: "4rem",
   },
-});
+}));
 
 export default function ForgotBox() {
   const classes = useStyles();

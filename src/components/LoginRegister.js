@@ -22,22 +22,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "right",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {},
   },
   forms: {
     width: "100%",
     margin: "0 auto",
   },
-  register: {
-    background: "rgb(255,255,255,.4)",
-  },
   bos: {
-    height: "3rem",
-    width: "3rem",
-    margin: "4.9rem",
-    marginBottom: "3rem",
+    height: ".1rem",
+
     backgroundColor: "white",
-    alignItems: "left",
   },
+  box: {},
 }));
 
 export const LoginRegister = () => {
@@ -49,14 +45,14 @@ export const LoginRegister = () => {
   };
   return (
     <div className={classes.root} id="log-reg-page">
-      <div className={classes.bos} onClick={openAdmin}></div>
-      <Box flexDirection="row">
+      <Box flexDirection="row" className={classes.box}>
         {form == 0 && <RegisterBox className={classes.register} />}
 
         {form == 1 && <LoginBox className={classes.login} />}
 
         {form == 2 && <AdminBox className={classes.admin} />}
         {form == 3 && <ForgotBox className={classes.forgot} />}
+        <div className={classes.bos} onClick={openAdmin}></div>
       </Box>
       <div className={classes.bos}></div>
     </div>

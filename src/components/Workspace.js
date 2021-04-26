@@ -12,6 +12,18 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Controller, useForm } from "react-hook-form";
 
+function WindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+  return width;
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -22,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   navbar: {
     backgroundColor: "rgba(0,0,0)",
     fontFamily: "Orbitron",
+    height: "8vh",
+    paddingTop: ".2rem",
+    [theme.breakpoints.down("sm")]: { paddingTop: "none" },
   },
   header: {
     //background: "none",
@@ -37,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   },
   sul: {
     flexGrow: 1,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   name: {
     borderBottom: 1,
@@ -56,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
     fontSize: "1rem",
     fontFamily: "Orbitron",
+    [theme.breakpoints.down("sm")]: {
+      width: "10vh",
+    },
   },
   addLink: {
     display: "flex",
@@ -65,12 +86,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5rem",
     marginBottom: "2rem",
   },
+  welcomeBack: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14,
+    },
+  },
 }));
 
 export const Workspace = (props) => {
   console.log(props);
   const classes = useStyles();
   const { control, register, handleSubmit } = useForm();
+
+  const width = WindowWidth();
+  console.log(width);
 
   const server = `http://localhost:6969/`;
   const webDomain = `http://localhost:3000/`;
@@ -122,7 +151,7 @@ export const Workspace = (props) => {
       <AppBar className={classes.navbar} elevation={0}>
         <Toolbar className={classes.wrapper}>
           <h2 className={classes.sul}>SHORT-UR-LINK</h2>
-          <h3>
+          <h3 className={classes.welcomeBack}>
             Welcome Back,
             {dataToDisplay.name}
           </h3>
@@ -155,8 +184,8 @@ export const Workspace = (props) => {
         <thead>
           <tr>
             <th>S. No.</th>
-            <th>FullForm</th>
-            <th>SuL Link</th>
+            {width > 600 && <th>Fullform</th>}
+            <th>SuL</th>
             <th>Operation</th>
           </tr>
         </thead>
@@ -168,8 +197,14 @@ export const Workspace = (props) => {
               return (
                 <tr key={i}>
                   <td>{i + 1}</td>
-                  <td>{link.fullform}</td>
-                  <td>{`${domain}SuL/${link.shortform}`}</td>
+                  {width > 600 && <td>{link.fullform}</td>}
+
+                  {width > 600 ? (
+                    <td>{`${domain}SuL/${link.shortform}`}</td>
+                  ) : (
+                    <td>{`${link.shortform}`}</td>
+                  )}
+
                   <td>
                     <button
                       className="btn text-light rounded-0"

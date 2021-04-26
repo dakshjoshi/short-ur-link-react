@@ -27,9 +27,15 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: "#ffffff",
     fontSize: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 0,
+    },
   },
   heading: {
     flexGrow: 1,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 18,
+    },
   },
   wrapper: {
     width: "90%",
@@ -38,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   iconForSearch: {
     fontSize: "4rem",
     color: "#ffffff",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem",
+    },
   },
   input: {
     width: "80vh",
@@ -47,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
     fontSize: "1rem",
     fontFamily: "Orbitron",
+    [theme.breakpoints.down("sm")]: {
+      width: "40vh",
+    },
   },
   searchBar: {
     marginLeft: "5%",
@@ -83,7 +95,7 @@ export default function Header() {
         <Toolbar className={classes.wrapper}>
           <h2 className={classes.heading}>
             <Scroll to="top-page" smooth={true}>
-              SHORT-UR-LINK
+              SHORT-UR-LINKS
             </Scroll>
           </h2>
 

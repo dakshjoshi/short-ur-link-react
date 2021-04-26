@@ -176,7 +176,7 @@ export const Register = () => {
               setForm(1);
             }}
           >
-            Already Existing User
+            Existing User
           </button>
           <input type="submit" className="btn m-4 col-3 btn-dark rounded-0" />
         </form>

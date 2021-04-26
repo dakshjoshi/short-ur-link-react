@@ -8,13 +8,17 @@ import Box from "@material-ui/core/Box";
 import { Login } from "./Login";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // minWidth: 275,
     minWidth: 700,
     minHeight: 400,
     background: "rgb(255,255,255,.6)",
     fontFamily: "Orbitron",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 200,
+      minHeight: 200,
+    },
   },
   bullet: {
     display: "inline-block",
@@ -32,7 +36,13 @@ const useStyles = makeStyles({
     marginLeft: "21px",
     marginTop: "11px",
   },
-});
+  headingg: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      textAlign: "center",
+    },
+  },
+}));
 
 export default function LoginBox() {
   const classes = useStyles();
@@ -42,7 +52,7 @@ export default function LoginBox() {
     <Box>
       <Card className={classes.root}>
         <Typography className={classes.heading}>
-          <h2>Log In</h2>
+          <h2 className={classes.headingg}>Log In</h2>
         </Typography>
         <Login />
       </Card>

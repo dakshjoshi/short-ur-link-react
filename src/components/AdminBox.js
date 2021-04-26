@@ -8,13 +8,17 @@ import Box from "@material-ui/core/Box";
 import { Admin } from "./Admin";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // minWidth: 275,
     minWidth: 700,
     minHeight: 400,
     background: "rgb(255,255,255,.6)",
     fontFamily: "Orbitron",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 200,
+      minHeight: 200,
+    },
   },
   bullet: {
     display: "inline-block",
@@ -32,7 +36,7 @@ const useStyles = makeStyles({
     marginLeft: "21px",
     marginTop: "11px",
   },
-});
+}));
 
 export default function AdminBox() {
   const classes = useStyles();

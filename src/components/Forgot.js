@@ -73,7 +73,14 @@ export const Forgot = () => {
               )}
             />
           </Container>
-
+          <button
+            className="btn btn-dark m-4 col-3 rounded-0"
+            onClick={() => {
+              setForm(1);
+            }}
+          >
+            Back
+          </button>
           <input type="submit" className="btn m-4 col-3 btn-dark rounded-0" />
         </form>
       </div>

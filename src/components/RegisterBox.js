@@ -6,13 +6,18 @@ import Card from "@material-ui/core/Card";
 import { Register } from "./Register";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     fontFamily: "Orbitron",
     // minWidth: 275,
     minWidth: 700,
     minHeight: 400,
     background: "rgb(255,255,255,.6)",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 100,
+      marginTop: "1rem",
+      //minHeight: 200,
+    },
   },
   content: {},
   mainContent: {},
@@ -32,7 +37,13 @@ const useStyles = makeStyles({
     marginLeft: "21px",
     marginTop: "11px",
   },
-});
+  headingg: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+      textAlign: "center",
+    },
+  },
+}));
 
 export default function RegisterBox() {
   const classes = useStyles();
@@ -41,7 +52,7 @@ export default function RegisterBox() {
     <Box border={0}>
       <Card className={classes.root}>
         <Typography className={classes.heading}>
-          <h2>Register</h2>
+          <h2 className={classes.headingg}>Register</h2>
         </Typography>
         <Register />
       </Card>

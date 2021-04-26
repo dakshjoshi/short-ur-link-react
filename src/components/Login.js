@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
       alignItems: "center",
     },
-    forgot: {},
+    forgot: {
+      marginTop: "2rem",
+    },
   },
 }));
 
@@ -79,15 +81,18 @@ export const Login = () => {
           />
         </Container>
 
-        <Container className={classes.forgot}>
-          <button
-            className="btn font-weight-lighter border-bottom p-1 rounded-0"
-            onClick={() => {
-              setForm(3);
-            }}
-          >
-            Forgot Password ?
-          </button>
+        <Container>
+          <div className={classes.forgot}>
+            <button
+              className={classes.forgotButton}
+              className="btn mt-2 mb-2 font-weight-lighter border-bottom p-1 rounded-0"
+              onClick={() => {
+                setForm(3);
+              }}
+            >
+              Forgot Password ?
+            </button>
+          </div>
         </Container>
 
         <button
